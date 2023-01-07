@@ -4,16 +4,17 @@ import Home from '../components/Home'
 import Welcome from '../components/Welcome'
 import Address from '../components/Address'
 import Rooms from '../components/Rooms'
+import Image from 'next/image'
 
 const inter = Inter({ subsets: ['latin'] })
 
 export default function LandingPage() {
   return (
-    <>
+    <div className='px-5 bg-[#121212]'>
       <Home />
-      <Welcome />
-      <Rooms />
-      <Address />
-    </>
+      {/* <Welcome />
+      <Rooms /> */}
+      {/* <Address /> */}
+    </div>
   )
 }
