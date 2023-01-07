@@ -10,10 +10,10 @@ const inter = Inter({ subsets: ['latin'] })
 
 export default function LandingPage() {
   return (
-    <div className='px-5 bg-[#121212]'>
+    <div>
       <Home />
-      {/* <Welcome />
-      <Rooms /> */}
+      <Welcome />
+      {/* <Rooms /> */}
       {/* <Address /> */}
     </div>
   )
