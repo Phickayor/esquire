@@ -1,0 +1,47 @@
+[
+    {
+        "name": "Classic Room",
+        "price": "20000",
+        "features": [
+            "Mini bar",
+            "Fast Internet access",
+            "Cable TV",
+            "Coffee-tea Set"
+        ],
+        "image": "/images/room9.jpeg"
+    },
+    {
+        "name": "Classic Room",
+        "price": "20000",
+        "features": [
+            "Mini bar",
+            "Fast Internet access",
+            "Cable TV",
+            "Coffee-tea Set"
+        ],
+        "image": "/images/room4.jpeg"
+    },
+    {
+        "name": "Classic Room",
+        "price": "20000",
+        "features": [
+            "Mini bar",
+            "Fast Internet access",
+            "Cable TV",
+            "Coffee-tea Set"
+        ],
+        "image": "/images/room2.jpeg"
+
+    },
+    {
+        "name": "Classic Room",
+        "price": "20000",
+        "features": [
+            "Mini bar",
+            "Fast Internet access",
+            "Cable TV",
+            "Coffee-tea Set"
+        ],
+        "image": "/images/room10.jpeg"
+    }
+]

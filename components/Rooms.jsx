@@ -1,4 +1,5 @@
 import React from "react";
+import rooms from "../utils/rooms.json"
 import { Navigation, Pagination, Scrollbar, A11y } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
 
@@ -7,54 +8,8 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/scrollbar";
 function Rooms() {
-    const rooms = [
-        {
-            name: "Classic Room",
-            price: "20000",
-            features: [
-                "Mini bar",
-                "Fast Internet access",
-                "Cable TV",
-                "Coffee-tea Set"
-            ],
-            image: "https://images.pexels.com/photos/262048/pexels-photo-262048.jpeg?auto=compress&cs=tinysrgb&w=2000"
-        },
-        {
-            name: "Classic Room",
-            price: "20000",
-            features: [
-                "Mini bar",
-                "Fast Internet access",
-                "Cable TV",
-                "Coffee-tea Set"
-            ],
-            image: "https://images.pexels.com/photos/262048/pexels-photo-262048.jpeg?auto=compress&cs=tinysrgb&w=2000"
-        },
-        {
-            name: "Classic Room",
-            price: "20000",
-            features: [
-                "Mini bar",
-                "Fast Internet access",
-                "Cable TV",
-                "Coffee-tea Set"
-            ],
-            image: "https://images.pexels.com/photos/262048/pexels-photo-262048.jpeg?auto=compress&cs=tinysrgb&w=2000"
-        },
-        {
-            name: "Classic Room",
-            price: "20000",
-            features: [
-                "Mini bar",
-                "Fast Internet access",
-                "Cable TV",
-                "Coffee-tea Set"
-            ],
-            image: "https://images.pexels.com/photos/262048/pexels-photo-262048.jpeg?auto=compress&cs=tinysrgb&w=2000"
-        }
-    ];
     return (
-        <div className="my-20">
+        <div className="mt-10 ">
             <Swiper
                 // install Swiper modules
                 modules={[Navigation, Pagination, Scrollbar, A11y]}
@@ -63,18 +18,18 @@ function Rooms() {
                 slidesPerView={1}
                 navigation
                 pagination={{ clickable: true }}
-                scrollbar={{ draggable: true }}
+                // scrollbar={{ draggable: true }}
                 onSwiper={(swiper) => console.log(swiper)}
                 onSlideChange={() => console.log("slide change")}
-                className="lg:w-5/6 mx-auto border"
+                className="lg:w-5/6 mx-auto"
             >
                 {rooms.map((room, index) => (
-                    <SwiperSlide key={index} className="flex w-full">
+                    <SwiperSlide key={index} className="max-h-[32rem] flex w-full">
                         <img
                             src={room.image}
-                            className="w-1/2  min-h-max"
+                            className="w-1/2 object-cover"
                         />
-                        <div className="w-1/2  min-h-max text-white  mx-auto text-center flex flex-col justify-center bg-violet-600">
+                        <div className="w-1/2  object-fit text-white  mx-auto text-center flex flex-col bg-violet-600">
                             <button className="absolute top-0 m-2 bg-orange-500 px-10 py-1 text-xl rounded-2xl font-semibold">
                                 &#8358;{room.price + " /day"}
                             </button>
