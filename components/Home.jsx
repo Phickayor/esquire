@@ -1,7 +1,10 @@
-import React, { useEffect, useRef } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowRight, faBars, faMinus, faPlus } from '@fortawesome/free-solid-svg-icons'
 function Home() {
+    const backgrounds = ['bg1', 'bg2', 'bg3', 'bg4', 'bg5', 'bg6', 'bg7']
+    var i = 0;
+    const [background, setBackground] = useState(backgrounds[i])
     const GuestNumber = useRef()
     const menu = <FontAwesomeIcon icon={faBars} />
     const rightArrow = <FontAwesomeIcon icon={faArrowRight} />
@@ -18,6 +21,31 @@ function Home() {
             GuestNumber.current.value
         }
     }
+    function backgroundChange() {
+
+        if (i < 6) {
+            i++;
+            console.log(i)
+            setBackground(backgrounds[i]);
+        }
+        else {
+            i = 0
+            setBackground(backgrounds[i]);
+
+        }
+    }
+
+    useEffect(
+        () => {
+
+            const timerID = setInterval(() => {
+                backgroundChange()
+            }, 5000);
+
+            return () => {
+                clearInterval(timerID);
+            };
+        }, [backgrounds[i]])
 
     return (
         <div className='bg-[#121212] w-full absolute h-screen top-0 left-0 flex flex-col justify-around z-0'>
@@ -28,11 +56,11 @@ function Home() {
                 <button className='border-2 rounded-2xl hover:bg-[#efefef] hover:text-violet-500 hover:border-none text-lg m-5 py-2 px-5 font-semibold border-purple-500'>Book Your Stay</button>
             </div>
             <img
-                src="https://images.pexels.com/photos/338504/pexels-photo-338504.jpeg?auto=compress&cs=tinysrgb&w=2000"
+                src={`/background/${background}.jpeg`}
                 alt="Background Image"
                 className=" opacity-80  z-10  object-cover h-4/6 mx-auto w-[95%] my-10 rounded-[30px] "
             />
-            <div className='flex mx-auto text-white  justify-around w-[95%] rounded-[30px] text-black h-1/6 my-5  bg-gradient-to-r from-violet-500 via-indigo-500 to-purple-500  '>
+            <div className='flex mx-auto text-white  justify-around w-[95%] rounded-[30px] h-1/6 my-5  bg-gradient-to-r from-violet-500 via-indigo-500 to-purple-500  '>
                 <h1 className='font-semibold text-2xl  py-10'>Book your stay</h1>
                 <form className='justify-center mt-5 space-x-5 hidden lg:flex'>
                     <div className='flex flex-col'>
