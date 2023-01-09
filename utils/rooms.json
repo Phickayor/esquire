@@ -1,47 +1,75 @@
 [
     {
-        "name": "Classic Room",
-        "price": "20000",
+        "name": "Deluxe King",
+        "price": "27750",
         "features": [
             "Mini bar",
             "Fast Internet access",
             "Cable TV",
             "Coffee-tea Set"
         ],
-        "image": "/images/room9.jpeg"
+        "image": [
+            "/deluxeKing/a.jpeg" , "/deluxeKing/b.jpeg",
+             "/deluxeKing/c.jpeg", "/deluxeKing/d.jpeg",
+              "/deluxeKing/e.jpeg", "/deluxeKing/f.jpeg",
+               "/deluxeKing/g.jpeg", "/deluxeKing/h.jpeg",
+               "/deluxeKing/i.jpeg", "/deluxeKing/j.jpeg"
+            ]
     },
     {
-        "name": "Classic Room",
-        "price": "20000",
+        "name": "Cozy Executive",
+        "price": "22500",
         "features": [
             "Mini bar",
             "Fast Internet access",
             "Cable TV",
             "Coffee-tea Set"
-        ],
-        "image": "/images/room4.jpeg"
+        ],  
+        "image": [
+            "/cozyExecutive/a.jpeg" , "/cozyExecutive/b.jpeg",
+             "/cozyExecutive/c.jpeg", "/cozyExecutive/d.jpeg"
+            ]
     },
     {
-        "name": "Classic Room",
-        "price": "20000",
+        "name": "Deluxe King Extra",
+        "price": "29750",
         "features": [
             "Mini bar",
             "Fast Internet access",
             "Cable TV",
             "Coffee-tea Set"
         ],
-        "image": "/images/room2.jpeg"
+        "image":[
+            "/deluxeKingExtra/a.jpeg" , "/deluxeKingExtra/b.jpeg"
+        ]
+    },
+    {
+        "name": "Diamond Suite",
+        "price": "42950",
+        "features": [
+            "Mini bar",
+            "Fast Internet access",
+            "Cable TV",
+            "Coffee-tea Set"
+        ],
+        "image": [
+            "/diamondSuite/a.jpeg" , "/diamondSuite/b.jpeg",
+             "/diamondSuite/c.jpeg", "/diamondSuite/d.jpeg"
+            ]
 
-    },
-    {
-        "name": "Classic Room",
-        "price": "20000",
+    },  {
+        "name": "Studio Room",
+        "price": "18950",
         "features": [
             "Mini bar",
             "Fast Internet access",
             "Cable TV",
             "Coffee-tea Set"
         ],
-        "image": "/images/room10.jpeg"
+        "image": [
+            "/studioRoom/a.jpeg" , "/studioRoom/b.jpeg",
+             "/studioRoom/c.jpeg", "/studioRoom/d.jpeg"
+            ]
+
     }
 ]
