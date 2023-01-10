@@ -15,12 +15,12 @@ function Rooms() {
             <p className='lg:text-2xl text-xl font-mono text-center '>Pick whichever suits you. </p>
             <div className="grid xl:grid-cols-3 sm:grid-cols-2 lg:w-11/12 mx-auto lg:mt-10 mt-5">
                 {rooms.map((room, index) => (
-                    <div key={index} className="space-y-4 m-5 lg:m-10 text-white bg-gradient-to-r from-violet-500 via-indigo-500 to-purple-500 p-5 rounded-2xl">
+                    <div key={index} className="space-y-4 m-5 lg:m-10 text-white border-2 shadow-lg shadow-purple-500  p-5 rounded-2xl">
                         <img src={room.image[0]} className="w-11/12 mx-auto h-44 rounded-2xl" />
-                        <h1 className="text-center text-3xl font-semibold">&#8358;{room.price + " /day"}</h1>
+                        <h1 className="text-center text-3xl font-semibold text-purple-200">&#8358;{room.price + " /day"}</h1>
                         <h1 className="text-center text-4xl font-semibold">{room.name}</h1>
                         <div className="flex justify-center">
-                            <button className=" text-center text-3xl mx-auto w-4/5 py-2 font-bold bg-white text-purple-500 rounded-2xl">Book Now</button>
+                            <button className=" text-center text-white text-3xl mx-auto w-4/5 py-2 font-bold bg-gradient-to-r from-violet-500 via-indigo-500 to-purple-500 rounded-2xl">Book Now</button>
                         </div>
                     </div>
                 ))}
