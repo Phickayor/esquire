@@ -26,7 +26,7 @@ function Footer() {
                 </div>
                 <div className="boxup-box flex flex-col grow items-center md:items-start basis-auto mb-[40px]">
                     <div className="font-bold mb-4 text-lg">Contact Details</div>
-                    <a href="#" className="boxuplink font-normal leading-[200%] text-sm">{location} &nbsp;36, Samsideen Jaiyesimi Aga Ikorodu </a>
+                    <a href="#" className="boxuplink font-normal leading-[200%] text-sm">{location} &nbsp;18 Olokunola Crescent Ikorodu </a>
                     <a href="#" className="boxuplink font-normal leading-[200%] text-sm">{phone} &nbsp;07031041271, 08024211480</a>
                     <a href="#" className="boxuplink font-normal leading-[200%] text-sm">{mail} &nbsp;info@esquireresorts.com</a>
                 </div>

@@ -25,7 +25,6 @@ function Home() {
 
         if (i < 6) {
             i++;
-            console.log(i)
             setBackground(backgrounds[i]);
         }
         else {
