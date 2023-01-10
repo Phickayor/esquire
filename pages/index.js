@@ -4,7 +4,13 @@ import Welcome from '../components/Welcome'
 
 export default function LandingPage() {
   return (
-    <div className=''>
+    <div>
+      <Head>
+        <title>Esquire Resorts | Landing Page</title>
+        <meta name="description" content="Esquire hotel a place for leisure" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
       <Home />
       <Welcome />
     </div>
