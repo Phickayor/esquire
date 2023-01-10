@@ -1,7 +1,7 @@
 import React from 'react'
-import Head from 'next/head'
+// import Head from 'next/head'
 import Footer from '../components/Footer'
-import PageHead from '../components/Head'
+import Head from '../components/Head'
 import Rooms from '../components/Rooms'
 function rooms({ pageTitle, imageLink }) {
     pageTitle = "Our Rooms"
@@ -10,13 +10,13 @@ function rooms({ pageTitle, imageLink }) {
     return (
         <div className='bg-slate-700 text-white'>
 
-            <Head>
+            {/* <Head>
                 <title>Esquire Resorts | Rooms</title>
                 <meta name="description" content="Esquire hotel rooms " />
                 <meta name="viewport" content="width=device-width, initial-scale=1" />
                 <link rel="icon" href="/favicon.ico" />
-            </Head>
-            <PageHead
+            </Head> */}
+            <Head
                 pageTitle={pageTitle}
                 imageLink={imageLink}
             />
