@@ -17,7 +17,7 @@ function about({ pageTitle, imageLink }) {
                 imageLink={imageLink}
             />
             <AboutUs />
-            <img className='z-[-9999] opacity-30 lg:hidden left-0 mx-auto w-full  absolute' src="/background/logo.png" />
+            {/* <img className='z-[-9999] opacity-30 lg:hidden left-0 mx-auto w-full  absolute' src="/background/logo.png" /> */}
             <Goals />
             <Services />
             <Footer />
