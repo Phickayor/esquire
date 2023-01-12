@@ -38,10 +38,10 @@ function Services() {
         }, [backgrounds[i]])
     return (
         <div className='my-20'>
-            <div className='md:h-[25rem] mx-auto w-10/12 flex flex-col md:flex-row '>
+            <div className='md:h-fit mx-auto lg:w-11/12 w-10/12 flex flex-col md:flex-row '>
 
-                <div className='md:w-1/2 px-10'>
-                    <img className=" h-full rounded-2xl w-full" src={`/background/${background}.jpeg`} />
+                <div className='md:w-1/2 lg:px-10 flex flex-col justify-center'>
+                    <img className=" h-[25rem] rounded-2xl w-full" src={`/background/${background}.jpeg`} />
                 </div>
                 <div className='md:w-1/2 my-10 md:my-0 px-10 flex flex-col justify-center'>
                     <h1 className="lg:text-4xl text-3xl font-semibold text-slate-700">Why Choose Us</h1>
