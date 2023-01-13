@@ -4,7 +4,7 @@ import Welcome from '../components/Welcome'
 
 export default function LandingPage() {
   return (
-    <div>
+    <div className='bg-[#121212] '>
       {/* <Head>
         <title>Esquire Resorts | Landing Page</title>
         <meta name="description" content="Esquire hotel a place for leisure" />
