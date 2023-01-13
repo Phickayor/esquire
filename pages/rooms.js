@@ -34,7 +34,7 @@ function Rooms({ pageTitle, imageLink, sideWidth }) {
                 imageLink={imageLink}
                 marginHandler={marginParent}
             />
-            <div className={`ml-[${marginValue}] ${blurValue}`}>
+            <div className={`ml-[${marginValue}] ${blurValue}`} style={{ marginLeft: marginValue }}>
                 <OurRooms />
                 <Footer />
             </div>
