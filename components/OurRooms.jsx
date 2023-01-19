@@ -1,13 +1,24 @@
-import React from "react";
+import React, { useEffect } from "react";
 import rooms from "../utils/rooms.json"
-import { Navigation, Pagination, Scrollbar, A11y } from "swiper";
-import { Swiper, SwiperSlide } from "swiper/react";
-
-import "swiper/css";
-import "swiper/css/navigation";
-import "swiper/css/pagination";
-import "swiper/css/scrollbar";
+import { useState } from "react";
+import Link from "next/link";
+import Router from 'next/router'
+// import { Navigation, Pagination, Scrollbar, A11y } from "swiper";
+// import { Swiper, SwiperSlide } from "swiper/react";
+// import "swiper/css";
+// import "swiper/css/navigation";
+// import "swiper/css/pagination";
+// import "swiper/css/scrollbar";
 function OurRooms() {
+    // const [selectedIndex, setSelectedIndex] = useState(null)
+    function Test(event) {
+        // setSelectedIndex(event)
+        Router.push({
+            pathname: "/Booknow",
+            query: { event }
+        })
+    }
+
     return (
 
         <div className='mx-auto w-11/12 mt-10'>
@@ -20,7 +31,7 @@ function OurRooms() {
                         <h1 className="text-center text-3xl font-semibold text-purple-200">&#8358;{room.price + " /day"}</h1>
                         <h1 className="text-center text-4xl font-semibold">{room.name}</h1>
                         <div className="flex justify-center">
-                            <button className=" text-center text-white text-3xl mx-auto w-4/5 py-2 font-bold bg-gradient-to-r from-violet-500 via-indigo-500 to-purple-500 rounded-2xl">Book Now</button>
+                            <button onClick={() => Test(index)} className=" text-center text-white text-3xl mx-auto w-4/5 py-2 font-bold bg-gradient-to-r from-violet-500 via-indigo-500 to-purple-500 rounded-2xl">Book Now</button>
                         </div>
                     </div>
                 ))}
