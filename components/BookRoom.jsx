@@ -69,7 +69,7 @@ function BookRoom(props) {
                     <h1 className="mt-5 opacity-0">...</h1>
                 </Swiper>
                 <h1 className="font-semibold bg-bgcolor p-2 text-2xl text-slate-700">Features of the {name}</h1>
-                <ul>
+                <ul className='lg:text-lg'>
                     {features.map((feature, index) => (
                         <li key={index}>{check}&nbsp; {feature}</li>
                     ))}

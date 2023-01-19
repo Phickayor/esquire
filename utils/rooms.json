@@ -3,27 +3,27 @@
         "name": "Deluxe King",
         "price": "27750",
         "features": [
-            "Mini bar",
+            "Larger bed than the Cozy Executive",
+            "Chair and Table",
+            "Comfy Relaxation Chair ",
             "Fast Internet access",
-            "Cable TV",
-            "Coffee-tea Set"
+            "Cable TV"
         ],
         "image": [
             "/deluxeKing/a.jpeg" , "/deluxeKing/b.jpeg",
              "/deluxeKing/c.jpeg", "/deluxeKing/d.jpeg",
               "/deluxeKing/e.jpeg", "/deluxeKing/f.jpeg",
-               "/deluxeKing/g.jpeg", "/deluxeKing/h.jpeg",
+               "/deluxeKing/g.jpeg", "/deluxeKing/h.jpeg",   
                "/deluxeKing/i.jpeg", "/deluxeKing/j.jpeg"
             ]
     },
     {
         "name": "Cozy Executive",
         "price": "22500",
-        "features": [
-            "Mini bar",
+        "features": [         
+            "Larger bed than the Studio Room",
             "Fast Internet access",
-            "Cable TV",
-            "Coffee-tea Set"
+            "Cable TV"
         ],  
         "image": [
             "/cozyExecutive/a.jpeg" , "/cozyExecutive/b.jpeg",
@@ -34,10 +34,10 @@
         "name": "Deluxe King Extra",
         "price": "29750",
         "features": [
-            "Mini bar",
+            "Two sitting chairs and one table",
             "Fast Internet access",
-            "Cable TV",
-            "Coffee-tea Set"
+            "More Comfy and larger bed than that of the Deluxe King",
+            "Cable TV"
         ],
         "image":[
             "/deluxeKingExtra/a.jpeg" , "/deluxeKingExtra/b.jpeg"
@@ -47,10 +47,10 @@
         "name": "Diamond Suite",
         "price": "42950",
         "features": [
-            "Mini bar",
+            "You have your own Personal Palor",
+            "Bigger and more comfy bed",
             "Fast Internet access",
-            "Cable TV",
-            "Coffee-tea Set"
+            "Cable TV"
         ],
         "image": [
             "/diamondSuite/a.jpeg" , "/diamondSuite/b.jpeg",
@@ -61,14 +61,13 @@
         "name": "Studio Room",
         "price": "18950",
         "features": [
-            "Mini bar",
+            "Chair and Table",
+            "Comfy Relaxation Chair ",
             "Fast Internet access",
-            "Cable TV",
-            "Coffee-tea Set"
+            "Cable TV"
         ],
         "image": [
-            "/studioRoom/a.jpeg" , "/studioRoom/b.jpeg",
-             "/studioRoom/c.jpeg", "/studioRoom/d.jpeg"
+            "/studioRoom/a.jpeg" , "/studioRoom/b.jpeg"
             ]
 
     }
