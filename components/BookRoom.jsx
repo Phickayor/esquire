@@ -27,12 +27,23 @@ function BookRoom(props) {
     // const star = <FontAwesomeIcon icon={faStar} />
     const check = <FontAwesomeIcon className="text-purple-500" icon={faCheck} />
     function SendDetails() {
+        fetch("http://localhost:8080/booking", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({ name })
+        }).then(function (response) {
+            return response.json()
+        }).then(function (data) {
+            console.log(data)
+        })
     }
 
 
-    useEffect(() => {
-        MainCalc()
-    })
+    // useEffect(() => {
+    //     MainCalc()
+    // })
     return (
         <div className=" lg:flex justify-between lg:space-x-20 mx-auto lg:w-10/12 w-11/12 ">
             <div className="p-5 lg:w-1/2">
@@ -89,7 +100,7 @@ function BookRoom(props) {
                         <li className="border-b-2  text-lg flex flex-wrap w-full justify-between">
                             <b className="pl-4 w-2/5">No of People in room</b>
                             <select
-                                className="text-slate-500 outline-none text-center mr-5"
+                                className="text-slate-500 bg-inherit outline-none text-center mr-5"
                                 ref={guestNumber}
 
                             >
@@ -141,7 +152,7 @@ function BookRoom(props) {
                     <h1 className="font-bold ml-10">&#36;{price}</h1>
                     <p className="text-gray20 text-lg">Only &#36;{price} each</p>
                 </div>
-                <button onChange={SendDetails} className="bg-purple-500 w-1/2 text-white outline-none hover:bg-slate-500 ">
+                <button onClick={SendDetails} className="bg-purple-500 w-1/2 text-white outline-none hover:bg-slate-500 ">
                     PROCEED TO PAYMENT
                 </button>
             </div>
