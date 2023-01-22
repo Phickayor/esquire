@@ -47,7 +47,7 @@ function BookRoom(props) {
             return response.json()
         }).then(function (data) {
             console.log(data)
-        })
+        }).catch(function (err) { console.log(err) })
     }
 
     useEffect(() => {
@@ -125,7 +125,7 @@ function BookRoom(props) {
                             <input
                                 type="date"
                                 min={minimumArrivalDate}
-                                value={minimumArrivalDate}
+                                defaultValue={minimumArrivalDate}
                                 className="text-slate-500 outline-none text-right mr-5"
 
                                 ref={arrivalDateContainer}
