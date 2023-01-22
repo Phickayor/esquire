@@ -16,23 +16,33 @@ import 'swiper/css/navigation'
 import 'swiper/css/pagination'
 import 'swiper/css/scrollbar'
 function BookRoom(props) {
+    const [minimumArrivalDate, SetminimumArrivalDate] = useState("")
+    const [minimumDepatureDate, SetminimumDepatureDate] = useState("")
     const index = props.selectedIndex
     const [name, SetName] = useState(Rooms[index].name)
     const [pics, setPics] = useState(Rooms[index].image)
     const [features, SetFeatures] = useState(Rooms[index].features)
-    const guestNumber = useRef(null)
-    const arrivalDate = useRef(null)
-    const depatureDate = useRef(null)
+    const guestNumberContainer = useRef(null)
+    const arrivalDateContainer = useRef(null)
+    const depatureDateContainer = useRef(null)
     const [price, SetPrice] = useState(Rooms[index].price)
     // const star = <FontAwesomeIcon icon={faStar} />
     const check = <FontAwesomeIcon className="text-purple-500" icon={faCheck} />
+    function dateSet() {
+        var today = new Date()
+        SetminimumArrivalDate(today.getFullYear() + "-" + today.getMonth() + 1 + "-" + today.getDate())
+        SetminimumDepatureDate(today.getFullYear() + "-" + today.getMonth() + 1 + "-" + parseInt(today.getDate() + 1))
+    }
     function SendDetails() {
+        var arrivalDate = arrivalDateContainer.current.value
+        var depatureDate = depatureDateContainer.current.value
+        var guestNumber = guestNumberContainer.current.value
         fetch("http://localhost:8080/booking", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify({ name })
+            body: JSON.stringify({ name, arrivalDate, depatureDate, guestNumber, price })
         }).then(function (response) {
             return response.json()
         }).then(function (data) {
@@ -40,10 +50,9 @@ function BookRoom(props) {
         })
     }
 
-
-    // useEffect(() => {
-    //     MainCalc()
-    // })
+    useEffect(() => {
+        dateSet()
+    })
     return (
         <div className=" lg:flex justify-between lg:space-x-20 mx-auto lg:w-10/12 w-11/12 ">
             <div className="p-5 lg:w-1/2">
@@ -101,7 +110,7 @@ function BookRoom(props) {
                             <b className="pl-4 w-2/5">No of People in room</b>
                             <select
                                 className="text-slate-500 bg-inherit outline-none text-center mr-5"
-                                ref={guestNumber}
+                                ref={guestNumberContainer}
 
                             >
                                 <option value="1">Just you</option>
@@ -115,20 +124,22 @@ function BookRoom(props) {
                             <b className="pl-4 w-2/5 ">Arrival Date</b>
                             <input
                                 type="date"
-                                defaultValue="2023-12-31"
+                                min={minimumArrivalDate}
+                                value={minimumArrivalDate}
                                 className="text-slate-500 outline-none text-right mr-5"
 
-                                ref={arrivalDate}
+                                ref={arrivalDateContainer}
                             />
                         </li>
                         <li className="border-b-2 text-lg flex flex-wrap w-full justify-between">
                             <b className="pl-4 w-2/5">Depature Date</b>
                             <input
                                 type="date"
-                                defaultValue="2023-12-31"
+                                min={minimumDepatureDate}
+                                defaultValue={minimumDepatureDate}
                                 className="text-slate-500 outline-none text-right mr-5"
 
-                                ref={depatureDate}
+                                ref={depatureDateContainer}
                             />
                         </li>
                         <div className="hidden lg:block space-y-4">
