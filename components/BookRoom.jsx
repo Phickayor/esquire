@@ -16,6 +16,7 @@ import 'swiper/css/navigation'
 import 'swiper/css/pagination'
 import 'swiper/css/scrollbar'
 function BookRoom(props) {
+    //Defining all sta
     const [minimumArrivalDate, SetminimumArrivalDate] = useState("")
     const [minimumDepatureDate, SetminimumDepatureDate] = useState("")
     const index = props.selectedIndex
@@ -31,7 +32,6 @@ function BookRoom(props) {
     function dateSet() {
         var today = new Date()
         SetminimumArrivalDate(today.getFullYear() + "-" + today.getMonth() + 1 + "-" + today.getDate())
-        SetminimumDepatureDate(today.getFullYear() + "-" + today.getMonth() + 1 + "-" + parseInt(today.getDate() + 1))
     }
     function SendDetails() {
         var arrivalDate = arrivalDateContainer.current.value
@@ -49,7 +49,10 @@ function BookRoom(props) {
             console.log(data)
         }).catch(function (err) { console.log(err) })
     }
-
+    function minDep() {
+        var bye = new Date(arrivalDateContainer.current.value)
+        SetminimumDepatureDate(bye.getFullYear() + "-" + bye.getMonth() + 1 + "-" + (bye.getDate() + 1))
+    }
     useEffect(() => {
         dateSet()
     })
@@ -127,7 +130,7 @@ function BookRoom(props) {
                                 min={minimumArrivalDate}
                                 defaultValue={minimumArrivalDate}
                                 className="text-slate-500 outline-none text-right mr-5"
-
+                                onChange={minDep}
                                 ref={arrivalDateContainer}
                             />
                         </li>
@@ -138,7 +141,6 @@ function BookRoom(props) {
                                 min={minimumDepatureDate}
                                 defaultValue={minimumDepatureDate}
                                 className="text-slate-500 outline-none text-right mr-5"
-
                                 ref={depatureDateContainer}
                             />
                         </li>
