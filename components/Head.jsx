@@ -29,7 +29,7 @@ function Head(props, { sideWidth }) {
         }
     }
     return (
-        <div className='h-40 bg-gray-700 lg:rounded-b-full rounded-b-[40%] sticky top-0 z-20'>
+        <div className='h-40 bg-gray-700 lg:rounded-b-full  rounded-b-[40%] sticky top-0 z-30'>
 
             <img
                 className=' absolute h-40 lg:rounded-b-full rounded-b-[40%] w-full object-cover opacity-60'
@@ -40,7 +40,6 @@ function Head(props, { sideWidth }) {
             <div className='flex flex-col justify-end h-40 '>
                 <h1 className="relative font-semibold font-[poppins] text-center my-2 text-white lg:text-8xl text-6xl ">{pageTitle}</h1>
             </div>
-            {/* <NavBar sideWidth={sideBarWidth} /> */}
 
         </div >
     )
