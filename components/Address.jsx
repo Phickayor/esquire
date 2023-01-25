@@ -9,7 +9,7 @@ function Address() {
     return (
         <div className='lg:h-80 text-slate-700 lg:flex lg:w-9/12 rounded-2xl my-10 mx-auto'>
             <iframe
-                className="map rounded-2xl lg:rounded-r-[0] lg:w-3/5 w-full"
+                className="rounded-2xl lg:rounded-r-[0] lg:w-3/5 w-full"
                 title="map"
                 src="https://www.google.com/maps/embed/v1/place?q=The+Esquire+Resort+Limited,+Okunola+Crescent+Road,+Lagos,+Nigeria&key=AIzaSyBFw0Qbyq9zTFTd-tUY6dZWTgaQzuU17R8"
             ></iframe>

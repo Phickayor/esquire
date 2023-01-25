@@ -7,7 +7,7 @@ import NavBar from '../components/NavBar'
 import OurRooms from '../components/OurRooms'
 function Contact({ pageTitle, imageLink, sideWidth }) {
     pageTitle = "Contact Us"
-    imageLink = "https://images.pexels.com/photos/164595/pexels-photo-164595.jpeg?auto=compress&cs=tinysrgb&w=2000"
+    imageLink = "https://images.pexels.com/photos/1416530/pexels-photo-1416530.jpeg?auto=compress&cs=tinysrgb&w=2000"
     const [blurValue, setBlurValue] = useState("")
     const [marginValue, setMarginValue] = useState("0px")
     sideWidth = marginValue

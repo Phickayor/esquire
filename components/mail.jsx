@@ -3,7 +3,7 @@ import React from 'react'
 function mail() {
     return (
         <div className='bg-white text-slate-700 p-5 rounded-xl my-10 lg:w-9/12 mx-auto'>
-            <form className='p-5'>
+            <form className='p-5' autoFocus>
                 <div className='md:flex justify-center'>
                     <div className='md:w-1/2'>
                         <label className='text-2xl lg:text-center block w-10/12 font-semibold font-mono'>Your Name</label>
