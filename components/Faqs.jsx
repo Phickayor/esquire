@@ -42,7 +42,7 @@ function Faqs(props) {
         }
         ]
         props.searchHandler(faqResults)
-    }, [])
+    })
     return (
         <div className='my-10 text-slate-700'>
             <div>
@@ -53,7 +53,7 @@ function Faqs(props) {
                 </p>
                 <ul className='my-10'>
                     <li className='border-b-2 p-4'>
-                        <div onClick={showorHide} className='flex justify-between text-black'>
+                        <div onClick={showorHide} className='flex justify-between text-black cursor-pointer '>
                             <h1 className=" font-bold text-[18px]" ref={firstQuestion}>Lorem ipsum dolor sit amet</h1>
                             <h1 className='cursor-pointer'>{MoreOrLess}</h1>
                         </div>
@@ -63,7 +63,7 @@ function Faqs(props) {
                         </p>
                     </li>
                     <li className='border-b-2 p-4'>
-                        <div onClick={showorHide} className='flex justify-between text-black'>
+                        <div onClick={showorHide} className='flex justify-between text-black cursor-pointer'>
                             <h1 ref={secondQuestion} className=" font-bold text-[18px]">Lorem ipsum dolor sit amet</h1>
                             <h1 className='cursor-pointer' disabled>{MoreOrLess}</h1>
                         </div>
@@ -73,7 +73,7 @@ function Faqs(props) {
                         </p>
                     </li>
                     <li className='border-b-2 p-4'>
-                        <div onClick={showorHide} className='flex justify-between text-black'>
+                        <div onClick={showorHide} className='flex justify-between text-black cursor-pointer'>
                             <h1 ref={thirdQuestion} className=" font-bold text-[18px]">Lorem ipsum dolor sit amet</h1>
                             <h1 className='cursor-pointer' disabled>{MoreOrLess}</h1>
                         </div>
@@ -83,7 +83,7 @@ function Faqs(props) {
                         </p>
                     </li>
                     <li className='border-b-2 p-4'>
-                        <div onClick={showorHide} className='flex justify-between text-black'>
+                        <div onClick={showorHide} className='flex justify-between text-black cursor-pointer'>
                             <h1 ref={fourthQuestion} className=" font-bold text-[18px]">Lorem ipsum dolor sit amet room</h1>
                             <h1 className='cursor-pointer' disabled>{MoreOrLess}</h1>
                         </div>
@@ -93,7 +93,7 @@ function Faqs(props) {
                         </p>
                     </li>
                     <li className='border-b-2 p-4'>
-                        <div onClick={showorHide} className='flex justify-between text-black'>
+                        <div onClick={showorHide} className='flex justify-between text-black cursor-pointer'>
                             <h1 ref={fifthQuestion} className=" font-bold text-[18px]">Lorem ipsum dolor sit amet</h1>
                             <h1 className='cursor-pointer' disabled>{MoreOrLess}</h1>
                         </div>

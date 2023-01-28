@@ -15,7 +15,7 @@ function AboutUs() {
                     <button className='bg-violet-500 py-4 rounded-2xl text-xl text-white font-semibold w-1/2'>Random</button>
                 </div>
                 <div className='md:w-1/2 md:order-2 order-1'>
-                    <img className=" h-full rounded-2xl w-full" src="/background/bg1.jpeg" />
+                    <img className=" h-full rounded-2xl w-full" src="/background/bg1.jpeg" alt="Esquire Building" />
                 </div>
             </div>
         </div>
