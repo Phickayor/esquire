@@ -1,5 +1,4 @@
 import React, { useEffect, useRef } from 'react'
-import Link from 'next/link'
 import Rooms from "../utils/rooms.json"
 import { useState } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -15,6 +14,7 @@ import 'swiper/css'
 import 'swiper/css/navigation'
 import 'swiper/css/pagination'
 import 'swiper/css/scrollbar'
+import Image from 'next/image'
 function BookRoom(props) {
     //Defining all sta
     const [minimumArrivalDate, SetminimumArrivalDate] = useState("")
@@ -29,10 +29,15 @@ function BookRoom(props) {
     const [price, SetPrice] = useState(Rooms[index].price)
     // const star = <FontAwesomeIcon icon={faStar} />
     const check = <FontAwesomeIcon className="text-purple-500" icon={faCheck} />
-    function dateSet() {
-        var today = new Date()
-        SetminimumArrivalDate(today.getFullYear() + "-" + today.getMonth() + 1 + "-" + today.getDate())
-    }
+    // function dateSet() {
+    //     var today = new Date()
+    //     SetminimumArrivalDate(today.getFullYear() + "-" + today.getMonth() + 1 + "-" + today.getDate())
+    //     var arrivalDay = new Date();
+    //     var minarr = new Date(minimumArrivalDate)
+    //     arrivalDay.setDate(minarr.getDate() + 1)
+    //     console.log(arrivalDay.getFullYear() + "-" + (arrivalDay.getMonth() + 1) + "-" + arrivalDay.getDate())
+    //     // SetminimumDepatureDate(arrivalDay)
+    // }
     function SendDetails() {
         var arrivalDate = arrivalDateContainer.current.value
         var depatureDate = depatureDateContainer.current.value
@@ -49,28 +54,26 @@ function BookRoom(props) {
             console.log(data)
         }).catch(function (err) { console.log(err) })
     }
-    function minDep() {
-        var bye = new Date(arrivalDateContainer.current.value)
-        SetminimumDepatureDate(bye.getFullYear() + "-" + bye.getMonth() + 1 + "-" + (bye.getDate() + 1))
+    function priceCheck() {
+        var start = new Date(arrivalDateContainer.current.value)
+        var finish = new Date(depatureDateContainer.current.value)
+        // To calculate the time difference of two dates
+        var Difference_In_Time = finish.getTime() - start.getTime();
+        // To calculate the no. of days between two dates
+        var diff = Difference_In_Time / (1000 * 3600 * 24)
+        SetPrice((Rooms[index].price) * diff)
     }
     useEffect(() => {
         dateSet()
-    })
+    }, [])
     return (
         <div className=" lg:flex justify-between lg:space-x-20 mx-auto lg:w-10/12 w-11/12 ">
+            {/*About Room */}
             <div className="p-5 lg:w-1/2">
-                <div className="pb-10">
-                    {/* Item Name  */}
-                    <h1 className="text-3xl font-bold text-gray20">{name}</h1>
-                    {/* <p className="text-2xl mt-2 text-yellow-500">
-                        {star}
-                        {star}
-                        {star}
-                        {star}
-                        {star}
-                        <i className="text-xl text-blue-500">87 Reviews</i>
-                    </p> */}
-                </div>
+                {/* Room Name  */}
+                <h1 className="text-3xl font-bold text-slate-700 pb-10">{name}</h1>
+
+                {/* Room Images */}
                 <Swiper
                     // install Swiper modules
                     modules={[Navigation, Pagination, Scrollbar, A11y]}
@@ -84,13 +87,16 @@ function BookRoom(props) {
                     {pics.map((index, i) => (
                         <SwiperSlide key={index} >
                             <img
-                                className="w-full max-h-80 rounded-2xl"
+                                className=" max-h-80 rounded-2xl"
                                 src={pics[i]}
+                                alt="selected Room"
                             />
                         </SwiperSlide>
                     ))}
                     <h1 className="mt-5 opacity-0">...</h1>
                 </Swiper>
+
+                {/*Room Features */}
                 <h1 className="font-semibold bg-bgcolor p-2 text-2xl text-slate-700">Features of the {name}</h1>
                 <ul className='lg:text-lg'>
                     {features.map((feature, index) => (
@@ -130,7 +136,7 @@ function BookRoom(props) {
                                 min={minimumArrivalDate}
                                 defaultValue={minimumArrivalDate}
                                 className="text-slate-500 outline-none text-right mr-5"
-                                onChange={minDep}
+                                onChange={priceCheck}
                                 ref={arrivalDateContainer}
                             />
                         </li>
@@ -139,6 +145,7 @@ function BookRoom(props) {
                             <input
                                 type="date"
                                 min={minimumDepatureDate}
+                                onChange={priceCheck}
                                 defaultValue={minimumDepatureDate}
                                 className="text-slate-500 outline-none text-right mr-5"
                                 ref={depatureDateContainer}
@@ -163,7 +170,7 @@ function BookRoom(props) {
             <div style={{ zIndex: 10 }} className="lg:hidden fixed w-full p-8 flex justify-between border-2 bottom-0 left-0 bg-white">
                 <div className="w-1/2 text-2xl">
                     <h1 className="font-bold ml-10">&#36;{price}</h1>
-                    <p className="text-gray20 text-lg">Only &#36;{price} each</p>
+                    <p className="text-gray20 text-lg">Only &#36;{Rooms[index].price} / night</p>
                 </div>
                 <button onClick={SendDetails} className="bg-purple-500 w-1/2 text-white outline-none hover:bg-slate-500 ">
                     PROCEED TO PAYMENT
