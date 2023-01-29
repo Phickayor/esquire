@@ -35,7 +35,7 @@ function ContactUs() {
     })
 
     return (
-        <div className='container mx-auto  w-10/12 my-10'>
+        <div className='container mx-auto flex- w-10/12 my-10'>
             <h2 className='text-4xl text-center font-semibold font-mono'>Get in touch!</h2>
             <p className='text-md text-center'>Reach out to us for enquiries on Esquire Resorts</p>
             <div className='font- flex  text-center mx-2 mt-8 justify-around'>

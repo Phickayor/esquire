@@ -22,7 +22,7 @@ function Help({ answers, sideWidth, pageTitle, imageLink }) {
         setAnswersValue(answers)
     }
     return (
-        <div>
+        <div className='flex flex-col min-h-screen'>
             <div>
                 <NavBar
                     sideWidth={sideWidth}
@@ -35,14 +35,14 @@ function Help({ answers, sideWidth, pageTitle, imageLink }) {
                 imageLink={imageLink}
                 marginHandler={marginParent}
             />
-            <div className={`ml-[${marginValue}] duration-300 ${blurValue}`} style={{ marginLeft: marginValue }}>
+            <div className={`flex-1 ml-[${marginValue}] duration-300 ${blurValue}`} style={{ marginLeft: marginValue }}>
                 <div className=' w-10/12 mx-auto flex flex-col justify-center'>
                     <HelpSearch
                         answers={answers} />
                     <Faqs searchHandler={faqsContent} />
                 </div>
-                <Footer />
             </div>
+            <Footer />
         </div>
     )
 }

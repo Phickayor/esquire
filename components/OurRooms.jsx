@@ -21,7 +21,7 @@ function OurRooms() {
 
     return (
 
-        <div className='mx-auto w-11/12 mt-10'>
+        <div className='mx-auto  w-11/12 mt-10'>
             <h1 className='text-4xl lg:text-5xl font-mono font-semibold text-center '>Book a room</h1>
             <p className='lg:text-2xl text-xl font-mono text-center '>Pick whichever suits you. </p>
             <div className="grid xl:grid-cols-3 sm:grid-cols-2 lg:w-11/12 mx-auto lg:mt-10 mt-5">

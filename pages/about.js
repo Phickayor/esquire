@@ -18,7 +18,7 @@ function About({ pageTitle, imageLink, sideWidth }) {
         setBlurValue(blur)
     }
     return (
-        <div>
+        <div className='flex flex-col min-h-screen'>
             <div>
                 <NavBar
                     sideWidth={sideWidth}
@@ -31,13 +31,13 @@ function About({ pageTitle, imageLink, sideWidth }) {
                 imageLink={imageLink}
                 marginHandler={marginParent}
             />
-            <div className={`ml-[${marginValue}] duration-300 ${blurValue}`} style={{ marginLeft: marginValue }}>
+            <div className={`ml-[${marginValue}] flex-1  duration-300 ${blurValue}`} style={{ marginLeft: marginValue }}>
                 <AboutUs />
                 {/* <img className='z-[-9999] opacity-30 lg:hidden left-0 mx-auto w-full  absolute' src="/background/logo.png" /> */}
                 <Goals />
                 <Services />
-                <Footer />
             </div>
+            <Footer />
         </div>
     )
 }

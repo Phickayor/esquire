@@ -16,7 +16,7 @@ function Contact({ pageTitle, imageLink, sideWidth }) {
         setBlurValue(blur)
     }
     return (
-        <div className='bg-slate-700 text-white'>
+        <div className='bg-slate-700 text-white flex flex-col min-h-screen'>
 
             {/* <Head>
                 <title>Esquire Resorts | Rooms</title>
@@ -35,10 +35,10 @@ function Contact({ pageTitle, imageLink, sideWidth }) {
                 imageLink={imageLink}
                 marginHandler={marginParent}
             />
-            <div className={`ml-[${marginValue}] ${blurValue}`} style={{ marginLeft: marginValue }}>
+            <div className={`flex-1 ml-[${marginValue}] ${blurValue}`} style={{ marginLeft: marginValue }}>
                 <ContactUs />
-                <Footer />
             </div>
+            <Footer />
         </div>
     )
 }
