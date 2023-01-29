@@ -16,28 +16,41 @@ import 'swiper/css/pagination'
 import 'swiper/css/scrollbar'
 import Image from 'next/image'
 function BookRoom(props) {
-    //Defining all sta
-    const [minimumArrivalDate, SetminimumArrivalDate] = useState("")
+    //Defining all variables
+    const guestNumberContainer = useRef(null)
+    const arrivalDateContainer = useRef(null)
+    const depatureDateContainer = useRef(null)
     const [minimumDepatureDate, SetminimumDepatureDate] = useState("")
     const index = props.selectedIndex
     const [name, SetName] = useState(Rooms[index].name)
     const [pics, setPics] = useState(Rooms[index].image)
     const [features, SetFeatures] = useState(Rooms[index].features)
-    const guestNumberContainer = useRef(null)
-    const arrivalDateContainer = useRef(null)
-    const depatureDateContainer = useRef(null)
     const [price, SetPrice] = useState(Rooms[index].price)
+    const today = new Date()
     // const star = <FontAwesomeIcon icon={faStar} />
     const check = <FontAwesomeIcon className="text-purple-500" icon={faCheck} />
-    // function dateSet() {
-    //     var today = new Date()
-    //     SetminimumArrivalDate(today.getFullYear() + "-" + today.getMonth() + 1 + "-" + today.getDate())
-    //     var arrivalDay = new Date();
-    //     var minarr = new Date(minimumArrivalDate)
-    //     arrivalDay.setDate(minarr.getDate() + 1)
-    //     console.log(arrivalDay.getFullYear() + "-" + (arrivalDay.getMonth() + 1) + "-" + arrivalDay.getDate())
-    //     // SetminimumDepatureDate(arrivalDay)
-    // }
+
+    //setting min depature date
+    function dateSet(minarr) {
+        var mindepDate, mindepMonth
+        minarr.setDate(minarr.getDate() + 1);
+        if (minarr.getDate() < 10) {
+            mindepDate = "0" + minarr.getDate()
+        }
+        else {
+            mindepDate = minarr.getDate()
+        }
+
+        if ((minarr.getMonth() + 1) < 10) {
+            mindepMonth = "0" + (minarr.getMonth() + 1)
+        }
+        else {
+            mindepMonth = (minarr.getMonth() + 1)
+        }
+        SetminimumDepatureDate(minarr.getFullYear() + '-' + mindepMonth + '-' + mindepDate)
+    }
+
+    // Sending Details to the Backend
     function SendDetails() {
         var arrivalDate = arrivalDateContainer.current.value
         var depatureDate = depatureDateContainer.current.value
@@ -54,6 +67,8 @@ function BookRoom(props) {
             console.log(data)
         }).catch(function (err) { console.log(err) })
     }
+
+    // Changing Price irrespective to date
     function priceCheck() {
         var start = new Date(arrivalDateContainer.current.value)
         var finish = new Date(depatureDateContainer.current.value)
@@ -62,9 +77,11 @@ function BookRoom(props) {
         // To calculate the no. of days between two dates
         var diff = Difference_In_Time / (1000 * 3600 * 24)
         SetPrice((Rooms[index].price) * diff)
+        dateSet(start)
     }
     useEffect(() => {
-        dateSet()
+        console.log(today)
+        dateSet(today)
     }, [])
     return (
         <div className=" lg:flex justify-between lg:space-x-20 mx-auto lg:w-10/12 w-11/12 ">
@@ -133,8 +150,8 @@ function BookRoom(props) {
                             <b className="pl-4 w-2/5 ">Arrival Date</b>
                             <input
                                 type="date"
-                                min={minimumArrivalDate}
-                                defaultValue={minimumArrivalDate}
+                                min={today.getFullYear() + "-" + today.getMonth() + 1 + "-" + today.getDate()}
+                                defaultValue={today.getFullYear() + "-" + today.getMonth() + 1 + "-" + today.getDate()}
                                 className="text-slate-500 outline-none text-right mr-5"
                                 onChange={priceCheck}
                                 ref={arrivalDateContainer}
@@ -143,6 +160,7 @@ function BookRoom(props) {
                         <li className="border-b-2 text-lg flex flex-wrap w-full justify-between">
                             <b className="pl-4 w-2/5">Depature Date</b>
                             <input
+                                required
                                 type="date"
                                 min={minimumDepatureDate}
                                 onChange={priceCheck}
