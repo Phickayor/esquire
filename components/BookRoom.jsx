@@ -22,10 +22,11 @@ function BookRoom(props) {
     const arrivalDateContainer = useRef(null)
     const depatureDateContainer = useRef(null)
     const mailContainer = useRef(null)
+    const [minimumArrivalDate, SetminimumArrivalDate] = useState("")
     const [minimumDepatureDate, SetminimumDepatureDate] = useState("")
     const index = props.selectedIndex
     const [name, SetName] = useState(Rooms[index].name)
-    const [infoMessage, setInfo] = useState("")
+    const [infoMessage, setInfo] = useState("Fill out this form carefully to book a reservation.")
     const [infoColor, setInfoColor] = useState("")
     const [pics, setPics] = useState(Rooms[index].image)
     const [features, SetFeatures] = useState(Rooms[index].features)
@@ -35,7 +36,7 @@ function BookRoom(props) {
     const check = <FontAwesomeIcon className="text-purple-500" icon={faCheck} />
     const info = <FontAwesomeIcon className="text-lg" icon={faInfoCircle} />
     //setting min depature date
-    function dateSet(minarr) {
+    function depDateSet(minarr) {
         var mindepDate, mindepMonth
         minarr.setDate(minarr.getDate() + 1);
         if (minarr.getDate() < 10) {
@@ -53,30 +54,46 @@ function BookRoom(props) {
         }
         SetminimumDepatureDate(minarr.getFullYear() + '-' + mindepMonth + '-' + mindepDate)
     }
+    function arrDateSet(today) {
+        var minarrDate, minarrMonth
+        if (today.getDate() < 10) {
+            minarrDate = "0" + today.getDate()
+        }
+        else {
+            minarrDate = today.getDate()
+        }
 
+        if ((today.getMonth() + 1) < 10) {
+            minarrMonth = "0" + (today.getMonth() + 1)
+        }
+        else {
+            minarrMonth = (today.getMonth() + 1)
+        }
+        SetminimumArrivalDate(today.getFullYear() + '-' + minarrMonth + '-' + minarrDate)
+    }
     // Sending Details to the Backend
     function SendDetails() {
         var mail = mailContainer.current.value
         var arrivalDate = arrivalDateContainer.current.value
         var depatureDate = depatureDateContainer.current.value
         var guestNumber = guestNumberContainer.current.value
-        fetch("http://localhost:8080/booking", {
+        fetch("http://localhost:8080/checkbooking", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify({ name, arrivalDate, depatureDate, guestNumber, price })
+            body: JSON.stringify({ name, arrivalDate, depatureDate })
         }).then(function (response) {
             return response.json()
         }).then(function (data) {
             console.log(data)
-            if (data.message === "success") {
-                setInfoColor("green-600")
+            if (data.message === "available") {
+                setInfoColor("green")
                 setInfo("Lucky You!, the room is available proceeding to payment...")
-                handlePayment(mail, price)
+                handlePayment(mail, price, name, arrivalDate, depatureDate, guestNumber)
             }
             else {
-                setInfoColor("red-600")
+                setInfoColor("red")
                 setInfo("Sorry this room is currently reserved between these days")
             }
         }).catch(function (err) { console.log(err) })
@@ -91,10 +108,10 @@ function BookRoom(props) {
         // To calculate the no. of days between two dates
         var diff = Difference_In_Time / (1000 * 3600 * 24)
         SetPrice((Rooms[index].price) * diff)
-        dateSet(start)
+        depDateSet(start)
     }
     useEffect(() => {
-        dateSet(today)
+        depDateSet(today)
     }, [])
     return (
         <div className=" lg:flex justify-between lg:space-x-20 mx-auto lg:w-10/12 w-11/12 ">
@@ -145,7 +162,7 @@ function BookRoom(props) {
                                 &#36; {price}
                             </b>
                         </h1>
-                        <h3 className={`text-${infoColor} text-center text-md font-semibold mx-5`}>{info} &nbsp; {infoMessage}</h3>
+                        <h3 style={{ color: infoColor }} className="text-purple-500 text-center text-md font-semibold mx-5">{info} &nbsp; {infoMessage}</h3>
                         <li className="border-b-2  text-lg flex flex-wrap w-full justify-between">
                             <b className="pl-4 w-2/5">No of People in room</b>
                             <select
@@ -174,8 +191,8 @@ function BookRoom(props) {
                             <b className="pl-4 w-2/5 ">Arrival Date</b>
                             <input
                                 type="date"
-                                min={today.getFullYear() + "-" + today.getMonth() + 1 + "-" + today.getDate()}
-                                defaultValue={today.getFullYear() + "-" + today.getMonth() + 1 + "-" + today.getDate()}
+                                min={minimumArrivalDate}
+                                defaultValue={minimumArrivalDate}
                                 className="text-slate-500 outline-none text-right mr-5"
                                 onChange={priceCheck}
                                 ref={arrivalDateContainer}
