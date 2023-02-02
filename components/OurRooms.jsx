@@ -13,10 +13,10 @@ function OurRooms() {
     // const [selectedIndex, setSelectedIndex] = useState(null)
     function Test(event) {
         // setSelectedIndex(event)
-        Router.push({
-            pathname: "/Booknow",
-            query: { event }
-        })
+        // Router.push({
+        //     pathname: "/Booknow",
+        //     query: { event }
+        // })
     }
 
     return (
