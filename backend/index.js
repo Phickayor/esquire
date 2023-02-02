@@ -58,29 +58,29 @@ app.post("/checkbooking", function (req, res) {
     })
 })
 
-// app.post("/booking", function (req, res) {
+app.post("/booking", function (req, res) {
 
-//     var newinfo = {
-//         rname: req.body.sroomname,
-//         arrivalDate: req.body.sarrivalDate,
-//         depatureDate: req.body.sdepatureDate,
-//         guestNumber: req.body.sguestNumber,
-//         price: req.body.sprice,
-//         mail: req.semail,
-//         ref: req.sref
-//     }
+    var newinfo = {
+        rname: req.body.sroomname,
+        arrivalDate: req.body.sarrivalDate,
+        depatureDate: req.body.sdepatureDate,
+        guestNumber: req.body.sguestNumber,
+        price: req.body.sprice,
+        mail: req.semail,
+        ref: req.sref
+    }
 
-//     MongoClient.connect(url, function (err, db) {
-//         if (err) throw err
-//         var dbo = db.db("esquire");
+    MongoClient.connect(url, function (err, db) {
+        if (err) throw err
+        var dbo = db.db("esquire");
 
-//         dbo.collection("reservation").insertOne(newinfo, function (err, res) {
-//             if (err) throw err;
-//             console.log("1 document inserted");
-//             db.close();
-//         })
-//     })
-// })
+        dbo.collection("reservation").insertOne(newinfo, function (err, res) {
+            if (err) throw err;
+            console.log("1 document inserted");
+            db.close();
+        })
+    })
+})
 app.listen(8080, () => {
     console.log(`Server listening on 8080`);
 });
