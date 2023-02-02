@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from 'react'
 import Rooms from "../utils/rooms.json"
 import { useState } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCheck, faStar } from '@fortawesome/free-solid-svg-icons'
+import { faCheck, faInfoCircle, faStar } from '@fortawesome/free-solid-svg-icons'
 
 // import Swiper core and required modules
 import { Navigation, Pagination, Scrollbar, A11y } from 'swiper'
@@ -15,21 +15,25 @@ import 'swiper/css/navigation'
 import 'swiper/css/pagination'
 import 'swiper/css/scrollbar'
 import Image from 'next/image'
+import handlePayment from './handlePayment'
 function BookRoom(props) {
     //Defining all variables
     const guestNumberContainer = useRef(null)
     const arrivalDateContainer = useRef(null)
     const depatureDateContainer = useRef(null)
+    const mailContainer = useRef(null)
     const [minimumDepatureDate, SetminimumDepatureDate] = useState("")
     const index = props.selectedIndex
     const [name, SetName] = useState(Rooms[index].name)
+    const [infoMessage, setInfo] = useState("")
+    const [infoColor, setInfoColor] = useState("")
     const [pics, setPics] = useState(Rooms[index].image)
     const [features, SetFeatures] = useState(Rooms[index].features)
     const [price, SetPrice] = useState(Rooms[index].price)
     const today = new Date()
     // const star = <FontAwesomeIcon icon={faStar} />
     const check = <FontAwesomeIcon className="text-purple-500" icon={faCheck} />
-
+    const info = <FontAwesomeIcon className="text-lg" icon={faInfoCircle} />
     //setting min depature date
     function dateSet(minarr) {
         var mindepDate, mindepMonth
@@ -52,6 +56,7 @@ function BookRoom(props) {
 
     // Sending Details to the Backend
     function SendDetails() {
+        var mail = mailContainer.current.value
         var arrivalDate = arrivalDateContainer.current.value
         var depatureDate = depatureDateContainer.current.value
         var guestNumber = guestNumberContainer.current.value
@@ -65,6 +70,15 @@ function BookRoom(props) {
             return response.json()
         }).then(function (data) {
             console.log(data)
+            if (data.message === "success") {
+                setInfoColor("green-600")
+                setInfo("Lucky You!, the room is available proceeding to payment...")
+                handlePayment(mail, price)
+            }
+            else {
+                setInfoColor("red-600")
+                setInfo("Sorry this room is currently reserved between these days")
+            }
         }).catch(function (err) { console.log(err) })
     }
 
@@ -80,7 +94,6 @@ function BookRoom(props) {
         dateSet(start)
     }
     useEffect(() => {
-        console.log(today)
         dateSet(today)
     }, [])
     return (
@@ -132,6 +145,7 @@ function BookRoom(props) {
                                 &#36; {price}
                             </b>
                         </h1>
+                        <h3 className={`text-${infoColor} text-center text-md font-semibold mx-5`}>{info} &nbsp; {infoMessage}</h3>
                         <li className="border-b-2  text-lg flex flex-wrap w-full justify-between">
                             <b className="pl-4 w-2/5">No of People in room</b>
                             <select
@@ -145,6 +159,16 @@ function BookRoom(props) {
                                 <option value="4">4 people</option>
                                 <option value="5">5 People</option>
                             </select>
+                        </li>
+                        <li className="border-b-2 text-lg flex flex-wrap w-full justify-between">
+                            <b className="pl-4 w-2/5">Email </b>
+                            <input
+                                required
+                                ref={mailContainer}
+                                placeholder="JohnDoe@gmail.com"
+                                type="email"
+                                className="text-slate-500 outline-none text-right mr-5"
+                            />
                         </li>
                         <li className="border-b-2 text-lg flex flex-wrap w-full justify-between">
                             <b className="pl-4 w-2/5 ">Arrival Date</b>
@@ -175,7 +199,7 @@ function BookRoom(props) {
                                 <b className="text-right">&#36;{price}</b>
                             </div>
                             <div className="justify-center hidden lg:flex">
-                                <button className="text-2xl bg-purple-500 w-9/12 text-white self-center rounded-lg p-5 font-semibold">
+                                <button onClick={SendDetails} className="text-2xl bg-purple-500 w-9/12 text-white self-center rounded-lg p-5 font-semibold">
                                     PROCEED TO PAYMENT
                                 </button>
                             </div>
@@ -187,8 +211,8 @@ function BookRoom(props) {
             </div>
             <div style={{ zIndex: 10 }} className="lg:hidden fixed w-full p-8 flex justify-between border-2 bottom-0 left-0 bg-white">
                 <div className="w-1/2 text-2xl">
-                    <h1 className="font-bold ml-10">&#36;{price}</h1>
-                    <p className="text-gray20 text-lg">Only &#36;{Rooms[index].price} / night</p>
+                    <h1 className="font-bold ml-10">&#8358;{price}</h1>
+                    <p className="text-gray20 text-lg">Only &#8358;{Rooms[index].price} / night</p>
                 </div>
                 <button onClick={SendDetails} className="bg-purple-500 w-1/2 text-white outline-none hover:bg-slate-500 ">
                     PROCEED TO PAYMENT

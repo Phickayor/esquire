@@ -18,6 +18,8 @@ app.use(
 var url = `mongodb+srv://esquire:${process.env.DB_PASSWORD}@cluster0.ygqcnmi.mongodb.net`;
 
 app.post("/booking", function (req, res) {
+    // res.setHeader(200, { 'Content-Type': 'text/plain' });
+    // res.set('X-Powered-By', 'Esquire Booking')
     var info = {
         rname: req.body.name,
         arrivalDate: req.body.arrivalDate,
@@ -27,11 +29,12 @@ app.post("/booking", function (req, res) {
     }
     // res.json({ name: info.rname, price: info.price })
 
+    //Creating mongodb connection
+
     MongoClient.connect(url, function (err, db) {
         if (err) throw err
-        console.log("Connection succesful")
         var dbo = db.db("esquire");
-
+        //Checking throgh reservation collection
         dbo.collection("reservation").find({}).toArray(function (err, result) {
             if (err) throw err;
             //Adding reservation to db when not booked already
@@ -40,8 +43,11 @@ app.post("/booking", function (req, res) {
             for (var i = 0; i < result.length; i++) {
                 const recordedArrivalDate = new Date(result[i].arrivalDate)
                 const recordedDepatureDate = new Date(result[i].depatureDate)
+                //Checking for already booked reservations
                 if (welcome >= recordedArrivalDate && goodbye <= recordedDepatureDate && result[i].rname === info.rname) {
                     console.log("date taken")
+                    res.json({ message: "reserved" })
+
                 }
                 else {
                     dbo.collection("reservation").insertOne(info, function (err, res) {
@@ -49,8 +55,7 @@ app.post("/booking", function (req, res) {
                         console.log("1 document inserted");
                         db.close();
                     })
-                    res.json({ message: "room available moving to payment " })
-
+                    res.json({ message: "success" })
                     break
                 }
             }
