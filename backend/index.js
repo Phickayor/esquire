@@ -17,51 +17,70 @@ app.use(
 );
 var url = `mongodb+srv://esquire:${process.env.DB_PASSWORD}@cluster0.ygqcnmi.mongodb.net`;
 
-app.post("/booking", function (req, res) {
+app.post("/checkbooking", function (req, res) {
     // res.setHeader(200, { 'Content-Type': 'text/plain' });
     // res.set('X-Powered-By', 'Esquire Booking')
     var info = {
         rname: req.body.name,
         arrivalDate: req.body.arrivalDate,
         depatureDate: req.body.depatureDate,
-        guestNumber: req.body.guestNumber,
-        price: req.body.price
     }
-    // res.json({ name: info.rname, price: info.price })
 
     //Creating mongodb connection
 
     MongoClient.connect(url, function (err, db) {
+
         if (err) throw err
         var dbo = db.db("esquire");
-        //Checking throgh reservation collection
+
+        //Checking through reservation collection
         dbo.collection("reservation").find({}).toArray(function (err, result) {
             if (err) throw err;
-            //Adding reservation to db when not booked already
+
             const welcome = new Date(info.arrivalDate)
             const goodbye = new Date(info.depatureDate)
             for (var i = 0; i < result.length; i++) {
                 const recordedArrivalDate = new Date(result[i].arrivalDate)
                 const recordedDepatureDate = new Date(result[i].depatureDate)
-                //Checking for already booked reservations
+                //Checking if reservation is reserved already
                 if (welcome >= recordedArrivalDate && goodbye <= recordedDepatureDate && result[i].rname === info.rname) {
                     console.log("date taken")
                     res.json({ message: "reserved" })
 
                 }
+                //Checking if reservation is available
                 else {
-                    dbo.collection("reservation").insertOne(info, function (err, res) {
-                        if (err) throw err;
-                        console.log("1 document inserted");
-                        db.close();
-                    })
-                    res.json({ message: "success" })
+                    res.json({ message: "available" })
                     break
                 }
             }
         });
     })
 })
+
+// app.post("/booking", function (req, res) {
+
+//     var newinfo = {
+//         rname: req.body.sroomname,
+//         arrivalDate: req.body.sarrivalDate,
+//         depatureDate: req.body.sdepatureDate,
+//         guestNumber: req.body.sguestNumber,
+//         price: req.body.sprice,
+//         mail: req.semail,
+//         ref: req.sref
+//     }
+
+//     MongoClient.connect(url, function (err, db) {
+//         if (err) throw err
+//         var dbo = db.db("esquire");
+
+//         dbo.collection("reservation").insertOne(newinfo, function (err, res) {
+//             if (err) throw err;
+//             console.log("1 document inserted");
+//             db.close();
+//         })
+//     })
+// })
 app.listen(8080, () => {
     console.log(`Server listening on 8080`);
 });
