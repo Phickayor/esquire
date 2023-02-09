@@ -10,13 +10,13 @@ import Router from 'next/router'
 // import "swiper/css/pagination";
 // import "swiper/css/scrollbar";
 function OurRooms() {
-    // const [selectedIndex, setSelectedIndex] = useState(null)
+    const [selectedIndex, setSelectedIndex] = useState(null)
     function Test(event) {
-        // setSelectedIndex(event)
-        // Router.push({
-        //     pathname: "/Booknow",
-        //     query: { event }
-        // })
+        setSelectedIndex(event)
+        Router.push({
+            pathname: "/Booknow",
+            query: { event }
+        })
     }
 
     return (

@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from 'react'
 import Rooms from "../utils/rooms.json"
 import { useState } from 'react'
+import { useSearchParams } from 'next/navigation'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCheck, faInfoCircle, faStar } from '@fortawesome/free-solid-svg-icons'
 
@@ -22,9 +23,13 @@ function BookRoom(props) {
     const arrivalDateContainer = useRef(null)
     const depatureDateContainer = useRef(null)
     const mailContainer = useRef(null)
+    const firstnameContainer = useRef(null)
     const [minimumArrivalDate, SetminimumArrivalDate] = useState("")
     const [minimumDepatureDate, SetminimumDepatureDate] = useState("")
     const index = props.selectedIndex
+    // const searchParams = useSearchParams()
+    // const index = searchParams.get('event');
+    // console.log(index)
     const [name, SetName] = useState(Rooms[index].name)
     const [infoMessage, setInfo] = useState("Fill out this form carefully to book a reservation.")
     const [infoColor, setInfoColor] = useState("")
@@ -74,6 +79,7 @@ function BookRoom(props) {
     // Sending Details to the Backend
     function SendDetails() {
         var mail = mailContainer.current.value
+        var fname = firstnameContainer.current.value
         var arrivalDate = arrivalDateContainer.current.value
         var depatureDate = depatureDateContainer.current.value
         var guestNumber = guestNumberContainer.current.value
@@ -90,7 +96,8 @@ function BookRoom(props) {
             if (data.message === "available") {
                 setInfoColor("green")
                 setInfo("Lucky You!, the room is available proceeding to payment...")
-                handlePayment(mail, price, name, arrivalDate, depatureDate, guestNumber)
+                console.log("info set")
+                handlePayment(mail, price, name, arrivalDate, depatureDate, guestNumber, fname)
             }
             else {
                 setInfoColor("red")
@@ -163,8 +170,29 @@ function BookRoom(props) {
                             </b>
                         </h1>
                         <h3 style={{ color: infoColor }} className="text-purple-500 text-center text-md font-semibold mx-5">{info} &nbsp; {infoMessage}</h3>
+
+                        <li className="border-b-2 text-lg flex flex-wrap w-full justify-between">
+                            <b className="pl-4 w-2/5">Name  </b>
+                            <input
+                                required
+                                ref={firstnameContainer}
+                                placeholder="John"
+                                type="text"
+                                className="text-slate-500 outline-none text-right mr-5"
+                            />
+                        </li>
+                        <li className="border-b-2 text-lg flex flex-wrap w-full justify-between">
+                            <b className="pl-4 w-2/5">Email </b>
+                            <input
+                                required
+                                ref={mailContainer}
+                                placeholder="JohnDoe@gmail.com"
+                                type="email"
+                                className="text-slate-500 outline-none text-right mr-5"
+                            />
+                        </li>
                         <li className="border-b-2  text-lg flex flex-wrap w-full justify-between">
-                            <b className="pl-4 w-2/5">No of People in room</b>
+                            <b className="pl-4 w-2/5">Number of People</b>
                             <select
                                 className="text-slate-500 bg-inherit outline-none text-center mr-5"
                                 ref={guestNumberContainer}
@@ -176,16 +204,6 @@ function BookRoom(props) {
                                 <option value="4">4 people</option>
                                 <option value="5">5 People</option>
                             </select>
-                        </li>
-                        <li className="border-b-2 text-lg flex flex-wrap w-full justify-between">
-                            <b className="pl-4 w-2/5">Email </b>
-                            <input
-                                required
-                                ref={mailContainer}
-                                placeholder="JohnDoe@gmail.com"
-                                type="email"
-                                className="text-slate-500 outline-none text-right mr-5"
-                            />
                         </li>
                         <li className="border-b-2 text-lg flex flex-wrap w-full justify-between">
                             <b className="pl-4 w-2/5 ">Arrival Date</b>

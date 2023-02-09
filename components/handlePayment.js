@@ -1,14 +1,15 @@
 import React from 'react'
 
-function handlePayment(email, price, roomname, arrivalDate, depatureDate, guestNumber) {
-    function CreateBooking(semail, sroomname, sarrivalDate, sdepatureDate, sguestNumber, sprice, sref) {
+function handlePayment(email, price, roomname, arrivalDate, depatureDate, guestNumber, name) {
+    console.log("got to payment fn")
+    function CreateBooking(sname, semail, sroomname, sarrivalDate, sdepatureDate, sguestNumber, sprice, sref) {
         console.log(semail + sprice + sref)
         fetch("http://localhost:8080/booking", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify({ semail, sroomname, sarrivalDate, sdepatureDate, sguestNumber, sprice, sref })
+            body: JSON.stringify({ sname, semail, sroomname, sarrivalDate, sdepatureDate, sguestNumber, sprice, sref })
         })
 
     }
@@ -22,7 +23,7 @@ function handlePayment(email, price, roomname, arrivalDate, depatureDate, guestN
         },
         callback: function (response) {
             let message = 'Payment complete! Reference: ' + response.reference;
-            CreateBooking(email, roomname, arrivalDate, depatureDate, guestNumber, price, response.reference)
+            CreateBooking(name, email, roomname, arrivalDate, depatureDate, guestNumber, price, response.reference)
             alert(message);
         }
     });
