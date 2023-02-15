@@ -1,18 +1,45 @@
-// import Head from 'next/head'
-import Home from '../components/Home'
-import Welcome from '../components/Welcome'
+import React, { useState } from 'react'
+import AboutUs from '../components/AboutUs'
+import Footer from '../components/Footer'
+import Goals from '../components/Goals'
+import Head from '../components/Head'
+import NavBar from '../components/NavBar'
+import Services from '../components/Services'
 
-export default function LandingPage() {
-  return (
-    <div className='bg-[#121212] '>
-      {/* <Head>
-        <title>Esquire Resorts | Landing Page</title>
-        <meta name="description" content="Esquire hotel a place for leisure" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="icon" href="/favicon.ico" />
-      </Head> */}
-      <Home />
-      <Welcome />
-    </div>
-  )
+function About({ pageTitle, imageLink, sideWidth }) {
+    const [marginValue, setMarginValue] = useState("0px")
+    const [blurValue, setBlurValue] = useState("")
+    pageTitle = "Esquire Resorts"
+    imageLink = "/background/bg7.jpeg"
+    sideWidth = marginValue
+
+    function marginParent(margin, blur) {
+        setMarginValue(margin)
+        setBlurValue(blur)
+    }
+    return (
+        <div className='flex flex-col min-h-screen'>
+            <div>
+                <NavBar
+                    sideWidth={sideWidth}
+                    shadowColor={"slate-700"}
+                    textColor={"slate-700"}
+                />
+            </div>
+            <Head
+                pageTitle={pageTitle}
+                imageLink={imageLink}
+                marginHandler={marginParent}
+            />
+            <div className={`ml-[${marginValue}] flex-1  duration-300 ${blurValue}`} style={{ marginLeft: marginValue }}>
+                <AboutUs />
+                {/* <img className='z-[-9999] opacity-30 lg:hidden left-0 mx-auto w-full  absolute' src="/background/logo.png" /> */}
+                <Goals />
+                <Services />
+            </div>
+            <Footer />
+        </div>
+    )
 }
+
+export default About

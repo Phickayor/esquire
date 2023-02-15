@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import React from 'react'
 
 function AboutUs() {
@@ -12,7 +13,7 @@ function AboutUs() {
                         fuga error vero sequi eveniet, temporibus laudantium,
                         quam voluptate et tempore nesciunt? Rem, eum iste.
                     </p>
-                    <button className='bg-violet-500 py-4 rounded-2xl text-xl text-white font-semibold w-1/2'>Random</button>
+                    <Link href="/rooms"><button className='bg-violet-500 py-4 rounded-2xl text-xl text-white font-semibold w-1/2'>Book Room</button></Link>
                 </div>
                 <div className='md:w-1/2 md:order-2 order-1'>
                     <img className=" h-full rounded-2xl w-full" src="/background/bg1.jpeg" alt="Esquire Building" />
