@@ -143,7 +143,7 @@ function BookRoom(props) {
                             <img
                                 className=" max-h-80 rounded-2xl"
                                 src={pics[i]}
-                                alt="selected Room"
+                                alt="Reviews"
                             />
                         </SwiperSlide>
                     ))}

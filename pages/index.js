@@ -1,9 +1,11 @@
 import React, { useState } from 'react'
 import AboutUs from '../components/AboutUs'
 import Footer from '../components/Footer'
+import Gallery from '../components/Gallery'
 import Goals from '../components/Goals'
 import Head from '../components/Head'
 import NavBar from '../components/NavBar'
+import Reviews from '../components/Reviews'
 import Services from '../components/Services'
 
 function About({ pageTitle, imageLink, sideWidth }) {
@@ -35,6 +37,8 @@ function About({ pageTitle, imageLink, sideWidth }) {
                 <AboutUs />
                 {/* <img className='z-[-9999] opacity-30 lg:hidden left-0 mx-auto w-full  absolute' src="/background/logo.png" /> */}
                 <Goals />
+                <Gallery />
+                <Reviews />
                 <Services />
             </div>
             <Footer />
